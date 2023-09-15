@@ -17,6 +17,10 @@ Una vez que estemos seguros de tener todos los paquetes, podemos proceder a corr
 3. Luego debemos de correr el archivo node.py
    De la siguiente forma: ./node.py
 
+Cosas importantes:
++  Para que ir a un nuevo objetivo aleatorio, debemos de posicionarnos en la terminal, presionar uno (1) y dar enter
++  Para detener por completo la simulacion, debemos de posicionarnos en la terminal, presionar dos (2) y dar enter
+
 ## Funcionamiento bloque a bloque
 Bloque 1: Importación de módulos
 
@@ -166,14 +170,15 @@ Bloque 14: Función main
 
 La función main se utiliza para iniciar el nodo ROS, abrir el simulador TurtleSim, crear una instancia de MyNode, iniciar el bucle de eventos ROS y, finalmente, cerrar todo cuando se termine la ejecución del programa.
 
+## Calculos
 
 La parte matemática principal se encuentra en la función move_turtle, que calcula la velocidad lineal y angular necesaria para que la tortuga se mueva hacia un objetivo.
 
 El objetivo de la tortuga se divide en dos partes:
 
-+Coordenadas aproximadas del objetivo (approx_x y approx_y): Estas coordenadas se establecen inicialmente de manera aleatoria dentro de un radio de búsqueda alrededor del objetivo real.
++ Coordenadas aproximadas del objetivo (approx_x y approx_y): Estas coordenadas se establecen inicialmente de manera aleatoria dentro de un radio de búsqueda alrededor del objetivo real.
 
-+Objetivo real (target_x y target_y): Estas son las coordenadas del objetivo real hacia el cual la tortuga se está moviendo.
++ Objetivo real (target_x y target_y): Estas son las coordenadas del objetivo real hacia el cual la tortuga se está moviendo.
 
 Para calcular la velocidad de la tortuga, se utilizan las siguientes fórmulas matemáticas:
 
@@ -213,3 +218,4 @@ Diagrama conceptual:
        Turtle Position (turtle_pose.x, turtle_pose.y)
 
 En este diagrama, la tortuga se encuentra en su posición actual (turtle_pose.x, turtle_pose.y) y se mueve hacia un objetivo (target_x, target_y). Las coordenadas aproximadas del objetivo se definen dentro de un radio de búsqueda alrededor del objetivo real.
+De esta forma, la tortuga primero se acerca a una coordenada aproximada y busca en un radio definido su objetivo.
