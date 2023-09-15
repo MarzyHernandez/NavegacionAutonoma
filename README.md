@@ -1,4 +1,60 @@
-# NavegacionAutonoma
+Claro, puedo proporcionarte una explicación más detallada de la parte matemática del código y usar recursos como líneas (----) para crear diagramas conceptuales. Primero, abordemos la parte matemática en el contexto del código y luego proporcionaré diagramas para ayudar a visualizarlo.
+
+La parte matemática principal se encuentra en la función move_turtle, que calcula la velocidad lineal y angular necesaria para que la tortuga se mueva hacia un objetivo.
+
+El objetivo de la tortuga se divide en dos partes:
+
+    Coordenadas aproximadas del objetivo (approx_x y approx_y): Estas coordenadas se establecen inicialmente de manera aleatoria dentro de un radio de búsqueda alrededor del objetivo real.
+
+    Objetivo real (target_x y target_y): Estas son las coordenadas del objetivo real hacia el cual la tortuga se está moviendo.
+
+Para calcular la velocidad de la tortuga, se utilizan las siguientes fórmulas matemáticas:
+
+    Distancia (distance) entre la posición actual de la tortuga y las coordenadas aproximadas del objetivo:
+
+    python
+
+distance = math.sqrt((approx_x - turtle_pose.x) ** 2 + (approx_y - turtle_pose.y) ** 2)
+
+Ángulo (angle) entre la posición actual de la tortuga y las coordenadas aproximadas del objetivo:
+
+python
+
+angle = math.atan2(approx_y - turtle_pose.y, approx_x - turtle_pose.x)
+
+Distancia al objetivo real (distance_to_target) y ángulo al objetivo real (angle_to_target):
+
+python
+
+    distance_to_target = math.sqrt((target_x - turtle_pose.x) ** 2 + (target_y - turtle_pose.y) ** 2)
+    angle_to_target = math.atan2(target_y - turtle_pose.y, target_x - turtle_pose.x)
+
+Luego, se crea un mensaje de velocidad (cmd_vel_msg) que se publica para controlar la tortuga. La velocidad lineal (cmd_vel_msg.linear.x) y la velocidad angular (cmd_vel_msg.angular.z) se calculan en función de las distancias y ángulos mencionados anteriormente. El código también considera el estado de la tortuga (si está dentro del radio de búsqueda o si se está aproximando al objetivo real) para ajustar las velocidades.
+
+Diagrama conceptual:
+
+perl
+
+       |   
+       |   
+       |         Target (target_x, target_y)
+       |          /
+       |         /
+       |        /
+       |       /
+       |      /     
+       |     / 
+       |    /
+       |   /         
+       |  /
+       | /
+       |/
+       |______________________
+       Turtle Position (turtle_pose.x, turtle_pose.y)
+
+En este diagrama, la tortuga se encuentra en su posición actual (turtle_pose.x, turtle_pose.y) y se mueve hacia un objetivo (target_x, target_y). Las coordenadas aproximadas del objetivo se definen dentro de un radio de búsqueda alrededor del objetivo real.
+
+Es importante destacar que este es un enfoque de navegación simple y que existen algoritmos más avanzados para la planificación de trayectorias en robótica, pero el código proporcionado es útil para comprender los conceptos básicos de control de robots en ROS.# NavegacionAutonoma
 Resolución del reto de Quantum (Reclutamiento 2023) del área de programació (en navegación autónoma)
 Autora: Mariana Marzayani Hernandez Jurado
 
@@ -169,4 +225,60 @@ Bloque 14: Función main
         main()
 
 La función main se utiliza para iniciar el nodo ROS, abrir el simulador TurtleSim, crear una instancia de MyNode, iniciar el bucle de eventos ROS y, finalmente, cerrar todo cuando se termine la ejecución del programa.
+
+
+La parte matemática principal se encuentra en la función move_turtle, que calcula la velocidad lineal y angular necesaria para que la tortuga se mueva hacia un objetivo.
+
+El objetivo de la tortuga se divide en dos partes:
+
++Coordenadas aproximadas del objetivo (approx_x y approx_y): Estas coordenadas se establecen inicialmente de manera aleatoria dentro de un radio de búsqueda alrededor del objetivo real.
+
++Objetivo real (target_x y target_y): Estas son las coordenadas del objetivo real hacia el cual la tortuga se está moviendo.
+
+Para calcular la velocidad de la tortuga, se utilizan las siguientes fórmulas matemáticas:
+
+Distancia (distance) entre la posición actual de la tortuga y las coordenadas aproximadas del objetivo:
+
+    distance = math.sqrt((approx_x - turtle_pose.x) ** 2 + (approx_y - turtle_pose.y) ** 2)
+
+Ángulo (angle) entre la posición actual de la tortuga y las coordenadas aproximadas del objetivo:
+
+    angle = math.atan2(approx_y - turtle_pose.y, approx_x - turtle_pose.x)
+
+Distancia al objetivo real (distance_to_target) y ángulo al objetivo real (angle_to_target):
+
+    distance_to_target = math.sqrt((target_x - turtle_pose.x) ** 2 + (target_y - turtle_pose.y) ** 2)
+    angle_to_target = math.atan2(target_y - turtle_pose.y, target_x - turtle_pose.x)
+
+Luego, se crea un mensaje de velocidad (cmd_vel_msg) que se publica para controlar la tortuga. La velocidad lineal (cmd_vel_msg.linear.x) y la velocidad angular (cmd_vel_msg.angular.z) se calculan en función de las distancias y ángulos mencionados anteriormente. El código también considera el estado de la tortuga (si está dentro del radio de búsqueda o si se está aproximando al objetivo real) para ajustar las velocidades.
+
+Diagrama conceptual:
+
+
+       |   
+       |   
+       |         Target (target_x, target_y)
+       |          /
+       |         /
+       |        /
+       |       /
+       |      /     
+       |     / 
+       |    /
+       |   /         
+       |  /
+       | /
+       |/
+       |______________________
+       Turtle Position (turtle_pose.x, turtle_pose.y)
+
+En este diagrama, la tortuga se encuentra en su posición actual (turtle_pose.x, turtle_pose.y) y se mueve hacia un objetivo (target_x, target_y). Las coordenadas aproximadas del objetivo se definen dentro de un radio de búsqueda alrededor del objetivo real.
+
+
+
+graph TD
+    A[Turtle Position] -->|Distancia y Ángulo| B[Approximate Target]
+    A -->|Distancia y Ángulo| C[Target]
+    B -->|Velocidad lineal y angular| D[Turtle]
+    C -->|Velocidad lineal y angular| D
 
